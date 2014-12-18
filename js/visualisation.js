@@ -57,6 +57,15 @@ function makeVisual() {
     }
 
     // Prepare data for different visualisations
+    function displayTotalDeaths(data){
+        var deaths = _.pluck(data, 'count');
+        var count = 0;
+        deaths.forEach(function(record){
+            count += parseInt(record);
+        })
+        return count;
+    }
+
     function getCountries(data) {
         var deaths = _.pluck(data, 'count');
         var countries = _.pluck(data, 'origin');
@@ -152,7 +161,7 @@ function makeVisual() {
     function makeVisual1(data){
         // reset canvas
         wipeCanvas();
-        $( "#visual" ).append( "<h3>Totaal omgekomen per afkomst</h3>" );
+        $( "#visual" ).append( "<h3>Totaal omgekomen per afkomst, (" + displayTotalDeaths(data) + " omgekomen in totaal)</h3>" );
 
         countriesAndDeaths = getCountries(data);
 
@@ -175,7 +184,7 @@ function makeVisual() {
     function makeVisual2(data){
         // reset canvas
         wipeCanvas();
-        $( "#visual" ).append( "<h3>Meest voorkomende oorzaken</h3>" );
+        $( "#visual" ).append( "<h3>Meest voorkomende oorzaken, (" + displayTotalDeaths(data) + " omgekomen in totaal)</h3>" );
         // haal de data op
         var commonCauses = getCauses(data);
         // maak de piechart
@@ -208,7 +217,7 @@ function makeVisual() {
 
         // reset screen
         wipeCanvas();
-        $( "#visual" ).append( "<h3>Aantal omgekomen per jaar</h3>" );
+        $( "#visual" ).append( "<h3>Aantal omgekomen per jaar, (" + displayTotalDeaths(data) + " omgekomen in totaal)</h3>" );
 
         // visualize
         // define dimensions of graph

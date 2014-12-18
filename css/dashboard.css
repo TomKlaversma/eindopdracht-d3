@@ -182,3 +182,7 @@ svg{
   border-radius:2px;
   color:white;
 }
+
+.bluetext{
+  color: #428BCA !important;
+}
